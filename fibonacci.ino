@@ -46,7 +46,7 @@
 //   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
 //   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(9, STRIP_PIN, NEO_RGB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(9, STRIP_PIN, NEO_RGB + NEO_KHZ400);
 
 byte bits[CLOCK_PIXELS];
 
@@ -515,7 +515,7 @@ void setBits(byte value, byte offset)
       }      
       break;
     case 9:
-      switch(random(2))
+      switch(random(3))
       {
         case 0:
           bits[0]|=offset;
@@ -525,6 +525,12 @@ void setBits(byte value, byte offset)
         case 1:
           bits[1]|=offset;
           bits[3]|=offset;
+          bits[4]|=offset;
+          break;
+        case 2:
+          bits[0]|=offset;
+          bits[1]|=offset;
+          bits[2]|=offset;
           bits[4]|=offset;
           break;
       }      
@@ -772,5 +778,3 @@ void printDateTime(DateTime now)
   
   delay(1000);
 }
-
-
